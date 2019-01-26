@@ -43,6 +43,7 @@ class App extends Component {
     const {java} = this.state;
     return (
       <div className="App">
+      <h1>chart</h1>
         <Chart data={results} java={java}/>
 
       </div>
