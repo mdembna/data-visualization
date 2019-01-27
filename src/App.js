@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Chart from './components/chart'
+import DataChart from './components/datachart'
+import CrosshairChart from './components/crosshair'
 import './App.css';
 import '../node_modules/react-vis/dist/style.css';
 
@@ -10,8 +11,7 @@ class App extends Component {
   constructor(props){
     super(props)
     this.state = {
-      results: [],
-      java: [],
+      data: []
     }
   }
 
@@ -26,26 +26,36 @@ class App extends Component {
         }
       })
       .then(response => this.setState({
-        results: response.results.filter(r => {
+        data: [response.results.filter(r => {
           return r.name === 'JavaScript';
-        }),
-        java: response.results.filter(r => {
+        }).map(d => {
+          return {x: d.year + '/' + d.quarter,
+      y: parseFloat(d.count/1000)}
+      }),
+        response.results.filter(r => {
           return r.name === 'Java';
-        })
+        }).map(d => {
+          return {x: d.year + '/' + d.quarter,
+      y: parseFloat(d.count/1000)}
+      })
+    ]
       }))
+
+     
+      
+      
   }
 
 
   
   render() {
 
-    
-    const {results} = this.state;
-    const {java} = this.state;
     return (
       <div className="App">
       <h1 className="main-title">chart</h1>
-        <Chart data={results} java={java}/>
+    
+        <CrosshairChart/>
+        <DataChart data={this.state.data}/>
 
       </div>
     );
