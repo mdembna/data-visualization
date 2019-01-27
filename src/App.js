@@ -3,6 +3,7 @@ import Chart from './components/chart'
 import './App.css';
 import '../node_modules/react-vis/dist/style.css';
 
+
 const API_URL = "https://nataliia-radina.github.io/react-vis-example/";
 
 class App extends Component {
@@ -43,7 +44,7 @@ class App extends Component {
     const {java} = this.state;
     return (
       <div className="App">
-      <h1>chart</h1>
+      <h1 className="main-title">chart</h1>
         <Chart data={results} java={java}/>
 
       </div>

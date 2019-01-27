@@ -1,7 +1,9 @@
 import React from 'react';
 import {XYPlot, XAxis, YAxis, VerticalGridLines, HorizontalGridLines, LineSeries} from 'react-vis';
+import styles from './chart.module.css'
 
 const Chart = (props) => {
+    
 
     const dataArr = props.data.map(d => {
         return {x: d.year + '/' + d.quarter,
@@ -16,7 +18,7 @@ const Chart = (props) => {
     console.log(dataArr);
 
         return (
-            <XYPlot
+            <XYPlot className = {styles.chart}
                 xType = "ordinal"
                 width={1000}
                 height={500}>
@@ -27,10 +29,10 @@ const Chart = (props) => {
                 <XAxis title="Period"/>
                 <YAxis title="Pull requests"/>
                 <LineSeries
-                style={{strokeWidth: 3, stroke: 'pink'}}
+                style={{strokeWidth: 3, stroke: 'rgba(0, 176, 151, 1)'}}
                 data={dataArr}/>
                 <LineSeries
-                style={{strokeWidth: 3, stroke: 'blue',}}
+                style={{strokeWidth: 3, stroke: 'rgba(0, 176, 151, 0.3)',}}
                 data={javaArr}/>
             </XYPlot>
         );
